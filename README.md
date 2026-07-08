@@ -16,7 +16,7 @@ A sleek, minimal, and performance-oriented personal portfolio designed with a te
 
 ---
 
-## 💎 Core Features
+## Core Features
 
 * **Live Status Monitor:** A mock telemetry module simulating real-time system performance ($144\text{ FPS}$, Java/OpenGL hooks).
 * **Adaptive Underline Navigation:** Custom dynamic bounding calculations for hover states and cross-sectional page transitions.
@@ -25,7 +25,7 @@ A sleek, minimal, and performance-oriented personal portfolio designed with a te
 
 ---
 
-## 📦 Local Deployment
+## Local Deployment
 
 To run this project locally, simply clone the repository and open the index file:
 
