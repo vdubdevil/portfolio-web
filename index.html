@@ -79,26 +79,31 @@
         /* Navbar */
         .navbar-container {
             position: fixed;
-            top: 24px;
+            top: 16px;
             left: 0;
             width: 100%;
             display: flex;
             justify-content: center;
             z-index: 1000;
+            padding: 0 16px;
         }
 
         .navbar {
             position: relative;
             display: flex;
             align-items: center;
-            gap: 32px;
-            padding: 10px 24px;
-            background: rgba(10, 10, 10, 0.4);
+            gap: 24px;
+            padding: 10px 20px;
+            background: rgba(10, 10, 10, 0.6);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: var(--border);
             border-radius: 100px;
             animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+            width: 100%;
+            max-width: fit-content;
+            justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .logo {
@@ -108,6 +113,8 @@
             font-weight: 700;
             font-size: 14px;
             letter-spacing: -0.5px;
+            white-space: nowrap;
+            z-index: 1001;
         }
 
         .logo-box {
@@ -122,17 +129,18 @@
         .nav-links {
             position: relative;
             display: flex;
-            gap: 24px;
+            gap: 16px;
             list-style: none;
         }
 
         .nav-links a {
-            font-size: 13px;
+            font-size: 11px;
             color: var(--muted);
-            font-weight: 500;
+            font-weight: 600;
             transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             padding: 4px 0;
             display: inline-block;
+            letter-spacing: 0.5px;
         }
 
         .nav-links a:hover, .nav-links a.active-nav {
@@ -151,15 +159,39 @@
         }
 
         .nav-github {
-            font-size: 13px;
-            font-weight: 500;
+            font-size: 11px;
+            font-weight: 600;
             border-left: var(--border);
-            padding-left: 16px;
+            padding-left: 12px;
             color: var(--muted);
             transition: color 0.2s;
+            letter-spacing: 0.5px;
+            display: none; /* Hidden on tiny screens, shown via media queries */
+            z-index: 1001;
         }
         .nav-github:hover {
             color: var(--accent);
+        }
+
+        /* Hamburger Toggle Button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 20px;
+            height: 14px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle .bar {
+            height: 2px;
+            width: 100%;
+            background-color: var(--accent);
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
         /* Hero Section */
@@ -169,31 +201,24 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 120px 24px 60px 24px;
+            padding: 140px 24px 60px 24px;
             max-width: 1200px;
             margin: 0 auto;
             gap: 48px;
-        }
-
-        @media(min-width: 900px) {
-            .hero {
-                flex-direction: row;
-                justify-content: space-between;
-                text-align: left;
-                }
+            text-align: center;
         }
 
         .hero-text {
-            flex: 1;
+            width: 100%;
             max-width: 650px;
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
         .hero h1 {
-            font-size: clamp(48px, 7.5vw, 92px);
+            font-size: clamp(34px, 8vw, 92px);
             font-weight: 800;
-            line-height: 1.0;
-            letter-spacing: -2px;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
             text-transform: uppercase;
         }
 
@@ -207,7 +232,7 @@
             font-family: var(--font-hand);
             text-transform: none;
             color: #a8a8a8;
-            font-size: clamp(36px, 5.5vw, 76px);
+            font-size: clamp(28px, 6vw, 76px);
             letter-spacing: 0px;
             font-weight: 400;
             display: inline-block;
@@ -228,9 +253,11 @@
         }
 
         .hero-buttons {
-            margin-top: 40px;
+            margin-top: 32px;
             display: flex;
-            gap: 16px;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -240,6 +267,9 @@
             font-weight: 500;
             transition: all 0.2s;
             cursor: pointer;
+            width: 100%; /* Full-width mobile stacking strategy */
+            max-width: 180px;
+            text-align: center;
         }
 
         .btn-primary {
@@ -278,6 +308,7 @@
             box-shadow: 0 40px 80px rgba(0,0,0,0.6);
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
             animation-delay: 0.2s;
+            text-align: left;
         }
 
         .monitor-header {
@@ -327,15 +358,15 @@
         section.content-section {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 120px 24px;
+            padding: 80px 24px;
         }
 
         section h2 {
-            font-size: 14px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--muted);
-            margin-bottom: 48px;
+            margin-bottom: 32px;
         }
 
         #contact h2 {
@@ -347,19 +378,12 @@
             background: var(--card-bg);
             border: var(--border);
             border-radius: 16px;
-            padding: 40px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            gap: 40px;
+            gap: 24px;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @media(min-width: 768px) {
-            .project-card {
-                flex-direction: row;
-                align-items: center;
-            }
         }
 
         .project-card:hover {
@@ -369,17 +393,18 @@
         }
 
         .project-info h3 {
-            font-size: 32px;
+            font-size: 24px;
             font-weight: 700;
             margin-bottom: 8px;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
         }
 
         .project-desc {
             color: var(--muted);
-            font-size: 16px;
-            margin-bottom: 24px;
+            font-size: 15px;
+            margin-bottom: 20px;
             max-width: 450px;
+            line-height: 1.5;
         }
 
         .project-tags {
@@ -390,8 +415,8 @@
 
         .tag {
             font-family: var(--font-mono);
-            font-size: 12px;
-            padding: 4px 10px;
+            font-size: 11px;
+            padding: 4px 8px;
             background: rgba(255,255,255,0.04);
             border: var(--border);
             border-radius: 4px;
@@ -399,7 +424,7 @@
         }
 
         .project-link {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
             display: inline-flex;
             align-items: center;
@@ -441,19 +466,13 @@
         .about-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 64px;
-        }
-
-        @media(min-width: 768px) {
-            .about-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+            gap: 48px;
         }
 
         .meta-list {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 20px;
         }
 
         .meta-item {
@@ -462,7 +481,7 @@
         }
 
         .meta-label {
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--muted);
@@ -470,7 +489,7 @@
         }
 
         .meta-value {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
         }
 
@@ -485,9 +504,9 @@
         .skills-list {
             display: flex;
             flex-direction: column;
-            gap: 28px;
+            gap: 24px;
             font-family: var(--font-mono);
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .skill-row {
@@ -522,43 +541,27 @@
         /* Centered Contact Ecosystem Layout */
         .contact-links {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
+            grid-template-columns: 1fr; /* Single column flow for default touch environments */
+            gap: 12px;
             width: 100%;
-        }
-
-        @media(min-width: 768px) {
-            .contact-links {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 20px;
-                max-width: 100%;
-                margin: 0 auto;
-            }
-            .contact-card {
-                flex: 1;
-                min-width: 200px;
-                max-width: 240px;
-            }
         }
 
         .contact-card {
             background: var(--card-bg);
             border: var(--border);
-            padding: 32px 24px;
+            padding: 24px 16px;
             border-radius: 12px;
             text-align: center;
             font-weight: 500;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .contact-card span.network {
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .contact-card span.handle {
@@ -573,7 +576,7 @@
             border-color: var(--accent);
             background: #fff;
             color: #000;
-            transform: scale(1.03);
+            transform: scale(1.02);
         }
 
         .contact-card:hover span.handle {
@@ -583,8 +586,8 @@
         /* Footer */
         footer {
             border-top: var(--border);
-            padding: 60px 24px;
-            margin-top: 100px;
+            padding: 48px 24px;
+            margin-top: 60px;
             background: rgba(5, 5, 5, 0.6);
         }
 
@@ -595,13 +598,6 @@
             flex-direction: column;
             justify-content: space-between;
             gap: 32px;
-        }
-
-        @media(min-width: 768px) {
-            .footer-content {
-                flex-direction: row;
-                align-items: center;
-            }
         }
 
         .footer-left {
@@ -620,13 +616,14 @@
         }
 
         .footer-tagline {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--muted);
         }
 
         .footer-right {
-            display: flex;
-            gap: 40px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
         }
 
         .footer-column {
@@ -656,13 +653,15 @@
             max-width: 1100px;
             margin: 40px auto 0 auto;
             padding-top: 24px;
-            border-top: rgba(255,255,255,0.03);
+            border-top: 1px solid rgba(255,255,255,0.03);
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 12px;
             font-size: 12px;
             color: #555;
         }
 
+        /* Animations */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -677,6 +676,99 @@
             from { opacity: 0.5; box-shadow: 0 0 4px #00ff66; }
             to { opacity: 1; box-shadow: 0 0 14px #00ff66; }
         }
+
+        /* ------------------------------------------
+            MOBILE INTERACTIVE BREAKPOINTS & DRAWERS
+        ------------------------------------------ */
+        @media (max-width: 767px) {
+            .menu-toggle {
+                display: flex; /* Show hamburger button */
+            }
+
+            .navbar {
+                max-width: 100%;
+                border-radius: 24px;
+                padding: 14px 20px;
+                align-items: center;
+            }
+
+            /* Container transitions into an unfolded dynamic viewport state */
+            .navbar.open {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 24px;
+                border-radius: 28px;
+                background: rgba(10, 10, 10, 0.95);
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                gap: 16px;
+                padding: 8px 4px 4px 4px;
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .navbar.open .nav-links {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+                width: 100%;
+                padding: 6px 0;
+            }
+
+            /* Disable desktop floating highlight bar on mobile devices */
+            .nav-underline {
+                display: none !important;
+            }
+
+            /* Burger vector transformations into closing structure icon */
+            .navbar.open .bar:nth-child(1) {
+                transform: translateY(6px) rotate(45deg);
+            }
+            .navbar.open .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .navbar.open .bar:nth-child(3) {
+                transform: translateY(-6px) rotate(-45deg);
+            }
+        }
+
+        @media(min-width: 480px) {
+            .nav-links a { font-size: 12px; gap: 20px; }
+            .contact-links { grid-template-columns: repeat(2, 1fr); }
+            .footer-right { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media(min-width: 768px) {
+            .navbar { width: auto; gap: 32px; padding: 10px 24px; }
+            .nav-links a { font-size: 13px; }
+            .nav-github { display: inline-block; }
+            
+            section.content-section { padding: 120px 24px; }
+            section h2 { font-size: 14px; margin-bottom: 48px; }
+            
+            .project-card { flex-direction: row; align-items: center; padding: 40px; }
+            .project-info h3 { font-size: 32px; }
+            
+            .about-grid { grid-template-columns: 1fr 1fr; gap: 64px; }
+            .meta-value { font-size: 18px; }
+            
+            .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+            .contact-card { flex: 1; min-width: 200px; max-width: 240px; padding: 32px 24px; }
+            
+            .footer-content { flex-direction: row; align-items: center; }
+            .footer-bottom { flex-direction: row; justify-content: space-between; }
+        }
+
+        @media(min-width: 900px) {
+            .hero { flex-direction: row; justify-content: space-between; text-align: left; padding: 120px 24px 60px 24px;}
+            .hero-buttons { justify-content: flex-start; }
+            .btn { width: auto; }
+        }
     </style>
 </head>
 <body>
@@ -686,6 +778,13 @@
             <div class="logo">
                 <span class="logo-box">VD</span> vdubdevil
             </div>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
             <ul class="nav-links">
                 <li><a href="#home" data-section="home" class="active-nav">HOME</a></li>
                 <li><a href="#projects" data-section="projects">PROJECTS</a></li>
@@ -758,7 +857,7 @@
                 </div>
             </div>
             <div>
-                <a href="#" class="project-link">Open<span class="arrow">→</span></a>
+                <a href="https://nightlume.pages.dev" class="project-link">Open<span class="arrow">→</span></a>
             </div>
         </div>
     </section>
@@ -884,6 +983,22 @@
         const navLinks = document.querySelectorAll('.nav-links a');
         const underline = document.querySelector('.nav-underline');
 
+        // Target new responsive classes
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navbar = document.querySelector('.navbar');
+
+        // Toggle state behavior
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('open');
+        });
+
+        // Close drawer explicitly upon choosing navigation anchor links
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.remove('open');
+            });
+        });
+
         const phrases = [
             "software that feels different.",
             "something, that individuals might enjoy.",
@@ -925,7 +1040,7 @@
         });
 
         const updateUnderline = (element) => {
-            if (!element) return;
+            if (!element || window.innerWidth < 768) return; // Don't compute logic on mobile views
             underline.style.left = `${element.offsetLeft}px`;
             underline.style.width = `${element.offsetWidth}px`;
         };
@@ -968,6 +1083,10 @@
             });
         };
 
+        // Standard Scroll Listener call setup
+        window.addEventListener('scroll', handleScrollEffects);
+        window.addEventListener('load', handleScrollEffects);
+
         const observerOptions = {
             root: null,
             rootMargin: '-40% 0px -50% 0px',
@@ -990,8 +1109,6 @@
         }, observerOptions);
 
         sections.forEach(section => sectionObserver.observe(section));
-        window.addEventListener('scroll', handleScrollEffects);
-        handleScrollEffects();
     </script>
 </body>
 </html>
